@@ -1,0 +1,19 @@
+# -*- encoding:utf-8
+# FDLint for vim installer
+# @author hua.qiuh
+
+def install
+  system "git clone git://github.com/qhwa/fdev-xray.git core"
+end
+
+def update
+  system "cd core && git pull"
+end
+
+desc "安装FDLint vim插件"
+task :install, &install
+
+desc "更新插件"
+task :update, &update
+
+task :default => [:install]
