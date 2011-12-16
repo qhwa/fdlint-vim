@@ -2,18 +2,14 @@
 # FDLint for vim installer
 # @author hua.qiuh
 
-def install
+desc "安装FDLint vim插件"
+task :install do
   system "git clone git://github.com/qhwa/fdev-xray.git core"
 end
 
-def update
+desc "更新插件"
+task :update do
   system "cd core && git pull"
 end
-
-desc "安装FDLint vim插件"
-task :install, &install
-
-desc "更新插件"
-task :update, &update
 
 task :default => [:install]

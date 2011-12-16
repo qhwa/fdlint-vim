@@ -87,5 +87,3 @@ module VIM_FDLint
   end
 
 end
-
-VIM::message "FDLint vim plugin #{RUBY_VERSION} #{__FILE__}"
