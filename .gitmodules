@@ -1,0 +1,3 @@
+[submodule "plugin/fdlint/core"]
+	path = plugin/fdlint/core
+	url = git@github.com:qhwa/fdev-xray.git
