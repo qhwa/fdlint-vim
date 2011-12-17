@@ -2,9 +2,6 @@
 
 ## install
 copy plugin to your $VIM_RUNTIME/ (commonly '~/.vim')
-
-    cd $VIM_RUNTIME/plugin/fdlint && rake
-
 That is all.
 
 
