@@ -18,7 +18,7 @@ endif
 augroup checkpoint
     "clear triggers first
     autocmd!
-    autocmd InsertLeave,BufRead,BufWritePost *.css,*.js,*.html,*.htm :ruby VIM_FDLint::check
+    autocmd BufRead,BufWritePost *.css,*.js,*.html,*.htm :ruby VIM_FDLint::check
     autocmd CursorMoved *.css,*.js,*.html,*.htm :ruby VIM_FDLint::show_err_msg
 augroup END
 

@@ -17,16 +17,17 @@ module VIM_FDLint
     def check
       
       filename = VIM::evaluate "bufname('%')"
-      type = XRay::Runner.file_type filename
       source = buffer_content
 
       clear_hls()
       vim_cmd "highlight link FDLintError SpellBad"
 
-      ok, @results = @checker.send("check_#{type}".intern, source)
+      @results = @checker.send("check".intern, source, filename)
 
-      list @results
-      show_err_msg
+      unless @results.empty?
+        list @results 
+        show_err_msg
+      end
 
     end
 
@@ -55,8 +56,10 @@ module VIM_FDLint
 
     def show_err_msg
       line = $curbuf.line_number
+      return if line == @last_line
       err = error_of_line line
       if err
+        @last_line = line
         VIM::message err.message
       else
         clear_err_msg
