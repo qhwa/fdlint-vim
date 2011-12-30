@@ -57,9 +57,9 @@ module VIM_FDLint
     def show_err_msg
       line = $curbuf.line_number
       return if line == @last_line
+      @last_line = line
       err = error_of_line line
       if err
-        @last_line = line
         VIM::message err.message
       else
         clear_err_msg
