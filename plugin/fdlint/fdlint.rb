@@ -6,13 +6,58 @@ unless Kernel.respond_to?(:require_relative)
   end
 end
 
+def insp(o)
+  case o
+    when String, Symbol
+      "'#{o.to_s}'"
+    when Hash
+      parts = []
+      o.each { |name, value| parts << "#{insp name}:#{insp value}" }
+      "{" << parts.join(",") << "}"
+    else
+      o.inspect
+  end
+end
+
+
 module VIM_FDLint
 
+  require 'find'
   require_relative 'core/lib/runner'
 
   @checker = XRay::Runner.new
 
   class << self
+
+    def check_file( file )
+
+      results = []
+      if File.directory? file
+        Find.find(file) do |f|
+          results.concat check_file(f) unless File.directory? f
+        end
+      elsif @checker.valid_file? file
+        f = file.to_s
+        results.concat @checker.check_file( f )
+      end
+
+      unless results.empty?
+        results.each do |r|
+          item = {
+            :filename     => file.to_s,
+            :lnum         => r.row,
+            :col          => r.column,
+            :type         => r.level,
+            :text         => r.message
+          }
+          VIM::evaluate "setqflist([#{insp item}], 'a')"
+        end
+        vim_cmd "cwindow"
+      end
+
+      results
+
+    end
 
     def check
       
@@ -35,15 +80,16 @@ module VIM_FDLint
     def buffer_content
       VIM::evaluate "join(getline(1,'$'), '\n')"
     end
+
+    def log(info)
+      VIM::message info
+    end
     
     public
     def list(results)
-      vim_cmd "cexpr ''"
       results.each do |r|
         hl_line(r.row)
-        vim_cmd "caddexpr '#{r.row},0,#{r.message}'"
       end
-      #vim_cmd "cwindow"
     end
     
     def clear_hls
@@ -68,7 +114,8 @@ module VIM_FDLint
     
     private
     def vim_call(fun, *args)
-      vim_cmd "call #{fun}(#{args.map(&:inspect).join(",")})"
+      cmd =  "call #{fun}(#{args.map(&:inspect).join(",")})"
+      vim_cmd cmd
     end
     
     def vim_cmd(str)
