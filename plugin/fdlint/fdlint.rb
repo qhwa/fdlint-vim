@@ -9,7 +9,7 @@ end
 def insp(o)
   case o
     when String, Symbol
-      "'#{o.to_s}'"
+      "'#{o.to_s.gsub(/(['"])/, "\\\1")}'"
     when Hash
       parts = []
       o.each { |name, value| parts << "#{insp name}:#{insp value}" }
@@ -52,7 +52,6 @@ module VIM_FDLint
           }
           VIM::evaluate "setqflist([#{insp item}], 'a')"
         end
-        vim_cmd "cwindow"
       end
 
       results

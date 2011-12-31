@@ -38,9 +38,11 @@ endfunction
 
 function g:fdlint(...)
     if a:0
+        call setqflist([])
         exec 'ruby VIM_FDLint::check_file("'. a:1 . '")'
+        cwindow
     else
-        exec 'ruby VIM_FDLint::check'
+        ruby VIM_FDLint::check
     end
 endfunction
 
