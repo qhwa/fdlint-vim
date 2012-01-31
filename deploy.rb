@@ -16,7 +16,7 @@ class Deployer
       plg_path = File.join(rp, 'plugin/fdlint')
       rm_rf plg_path
       begin
-        cp_r 'plugin', plg_path
+        cp_r 'plugin/fdlint', plg_path
         puts "Successfully deployed into #{plg_path} ."
       rescue => e
         warn "Deploy into #{plg_path} failed!"
