@@ -6,8 +6,7 @@ if exists("g:disable_fdlint") || exists("g:did_fdlint_plugin")
     finish
 endif
 
-" disabled for debugging
-"let g:did_fdlint_plugin=1
+let g:did_fdlint_plugin=1
 
 if !has("ruby")
     echo "Please install ruby support for your vim"
