@@ -2,6 +2,9 @@
 
 ## install
 
+    git clone git://github.com/qhwa/fdlint-vim.git
+    cd fdlint-vim
+
     git submodule init
     git submodule update
 
