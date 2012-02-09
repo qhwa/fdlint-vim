@@ -14,4 +14,4 @@
 
 
 ## usage
-It will check your code everytime you open a js,css or html file.
+It will check your code everytime you open and save a js,css or html file.
