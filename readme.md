@@ -15,7 +15,12 @@
 
 ## usage
 It will check your code everytime you open and save a css or html file.
-for javascript files, you must manualy call :FDLint to check. This is for performance consider.
+
+fdlint.vim will review your code when...
+* every time you edit CSS/HTML file
+* you open CSS/HTML file
+* you called `:FDLint` command in a CSS/HTML/JS buffer
+
 You may want to bind a hotkey to `:FDLint`. It is `<leader>+fd` by default.
 
 ## Thanks
