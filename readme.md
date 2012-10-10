@@ -16,7 +16,7 @@
 ## usage
 It will check your code everytime you open and save a css or html file.
 for javascript files, you must manualy call :FDLint to check. This is for performance consider.
-You may want to bind a hotkey to `:FDLint`. It is `\<leader>+fd` by default.
+You may want to bind a hotkey to `:FDLint`. It is `<leader>+fd` by default.
 
 ## Thanks
 This vim script is built base on the awesome **jslint.vim** vim plugin, which is available here:
