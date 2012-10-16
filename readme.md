@@ -1,5 +1,11 @@
 # FDLint as vim plugin
 
+This is the vim plugin for [fdlint](https://github.com/qhwa/fdlint) which helps web developers write better code by reading and reviewing codes.
+
+## preview
+
+![reviewing](http://q.pnq.cc/wp-content/uploads/2012/02/fdlint-vim-500x543.png)
+
 ## install
 
     git clone git://github.com/qhwa/fdlint-vim.git
